@@ -24,3 +24,6 @@ customer3 = Customer.new({
   "funds" => 100
   })
 customer3.save()
+
+binding.pry
+nil
