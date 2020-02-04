@@ -1,4 +1,3 @@
-require('pg')
 require_relative('../db/sql_runner')
 
 class Film
@@ -24,7 +23,7 @@ class Film
 
   def update()
     sql = "UPDATE films SET
-    (title, price)
+    (title, price) VALUES ($1, $2)
     WHERE id = $3"
     values = [@title, @price, @id]
     SqlRunner.run(sql, values)
@@ -40,7 +39,7 @@ class Film
     sql = "SELECT customers.*
     FROM customers
     INNER JOIN tickets
-    ON tickets.customer_id = customer_id
+    ON tickets.customer_id = customers.id
     WHERE film_id = $1"
     values = [@id]
     customers = SqlRunner.run(sql, values)
